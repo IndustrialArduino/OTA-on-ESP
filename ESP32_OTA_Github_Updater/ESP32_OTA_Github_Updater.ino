@@ -5,7 +5,7 @@
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
 #include <EEPROM.h> 
-#include "Secrets.h"
+#include "Secrets.h"  // SSID and password of the Wifi
 
 #define CURRENT_VERSION_ADDR 2
 
