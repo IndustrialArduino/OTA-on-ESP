@@ -44,17 +44,21 @@ const char version_url[] = "/IndustrialArduino/OTA-on-ESP/release/version.txt"; 
 String firmware_url = "/IndustrialArduino/OTA-on-ESP/release/firmware_vX.X.X.bin";  // Path to the firmware file
 
 ```
--**APN**: Replace `"dialogbb"` with your own APN if necessary.
--**version_url**: Update the URL to point to your GitHub repository’s `version.txt` file.
--**firmware_url**: This is automatically generated in the code, but you can manually change it if needed to point to the correct path.
+- **APN**: Replace `"dialogbb"` with your own APN if necessary.
+- **version_url**: Update the URL to point to your GitHub repository’s `version.txt` file.
+- **firmware_url**: This is automatically generated in the code, but you can manually change it if needed to point to the correct path.
 
 ### 2. Uploading New Firmware
 
- 1.**Build your new firmware:** Compile your code and save the `.bin` file.
+ 1.**Build your new firmware:** Compile your code and save the `.bin` file. 
+ 
  2.**Upload to GitHub:**
+ 
      - Upload the new `.bin` file to the release branch of your GitHub repository.
      - Name the file in the format `firmware_vX.X.X.bin`, where `X.X.X` is the version number (e.g., `firmware_v1.0.1.bin`).
- 3.**Update** `version.txt`:
+     
+ 3. **Update** `version.txt`:
+    
      - Update the `version.txt` file with the new version number (e.g., `1.0.1`).
 
 ### 3. Updating the Firmware Version on ESP32
@@ -69,9 +73,9 @@ After a successful OTA update, this variable must be updated in the code to refl
 
 ## Running the OTA Update
 
-  1.Once the code is deployed, the ESP32 will check the `version.txt` file periodically.
-  2.If a new version is available, the device will download the corresponding `.bin` file and perform the update.
-  3.After the update, the ESP32 restarts with the new firmware.
+  1. Once the code is deployed, the ESP32 will check the `version.txt` file periodically.
+  2. If a new version is available, the device will download the corresponding `.bin` file and perform the update.
+  3. After the update, the ESP32 restarts with the new firmware.
 
 ## Example Output
 
