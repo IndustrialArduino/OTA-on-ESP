@@ -26,3 +26,8 @@ The firmware update process works as follows:
 ```
 - `version.txt`: This file should contain only the version number of the latest firmware, e.g., `1.0.1`
 
+### Key Components
+
+- **SIM7500 Module**: Responsible for connecting to the internet via GPRS and making HTTPS requests.
+- **TinyGSM and SSLClient Libraries**: Used for secure communication with the GitHub repository.
+- **ArduinoHttpClient Library**: Handles the GET request to fetch the firmware version and download the binary file.
