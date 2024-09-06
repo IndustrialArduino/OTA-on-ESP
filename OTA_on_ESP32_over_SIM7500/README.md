@@ -24,4 +24,5 @@ The firmware update process works as follows:
   ├── version.txt
 
 ```
-FFF
+- `version.txt`: This file should contain only the version number of the latest firmware, e.g., `1.0.1`
+
