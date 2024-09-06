@@ -54,8 +54,8 @@ String firmware_url = "/IndustrialArduino/OTA-on-ESP/release/firmware_vX.X.X.bin
  
  2.**Upload to GitHub:**
  
-     - Upload the new `.bin` file to the release branch of your GitHub repository.
-     - Name the file in the format `firmware_vX.X.X.bin`, where `X.X.X` is the version number (e.g., `firmware_v1.0.1.bin`).
+     -  Upload the new `.bin` file to the release branch of your GitHub repository.
+     -  Name the file in the format `firmware_vX.X.X.bin`, where `X.X.X` is the version number (e.g., `firmware_v1.0.1.bin`).
      
  3. **Update** `version.txt`:
     
