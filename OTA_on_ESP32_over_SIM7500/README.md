@@ -23,6 +23,5 @@ The firmware update process works as follows:
   ├── firmware_v1.0.1.bin
   ├── version.txt
 
-APN: Replace "dialogbb" with your own APN if necessary.
-version_url: Update the URL to point to your GitHub repository’s version.txt file.
-firmware_url: This is automatically generated in the code, but you can manually change it if needed to point to the correct path.
+```
+FFF
