@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <Update.h>
-#include <EEPROM.h>
 
 #define TINY_GSM_MODEM_SIM7500
 // Increase RX buffer
@@ -35,8 +34,16 @@ const int port = 443;
 
 String current_version = "1.0.0";
 String new_version;
-const char version_url[] = "/Pasan1021/ESP32-OTA/release/version.txt";
+const char version_url[] = "/IndustrialArduino/OTA-on-ESP/release/version.txt";
+
 String firmware_url;
+
+//variabls to blink without delay:
+const int led1 = 2;
+const int led2 = 12;
+unsigned long previousMillis = 0;        // will store last time LED was updated
+const long interval = 1000;           // interval at which to blink (milliseconds)
+int ledState = LOW;             // ledState used to set the LED
 
 #ifdef DUMP_AT_COMMANDS
 #include <StreamDebugger.h>
@@ -55,9 +62,6 @@ void setup() {
   // Set console baud rate
   Serial.begin(115200);
   delay(10);
-
-  EEPROM.begin(4096);
-  EEPROM.get(CURRENT_VERSION_ADDR, current_version);
 
   SerialAT.begin(UART_BAUD, SERIAL_8N1, MODEM_RX, MODEM_TX);
 
@@ -105,7 +109,20 @@ void loop() {
   }
   delay(1000);
 
-  //add the code need to run
+  //add the code need to run and this is an example program
+  //loop to blink without delay
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+    // if the LED is off turn it on and vice-versa:
+    ledState = not(ledState);
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(led1,  ledState);
+    digitalWrite(led2,  ledState);
+  }
 
 }
 
@@ -136,7 +153,7 @@ bool checkForUpdate(String &firmware_url) {
 
   if (new_version != current_version) {
     Serial.println("New version available. Updating...");
-    firmware_url = String("/Pasan1021/ESP32-OTA/release/firmware_v") + new_version + ".bin";
+    firmware_url = String("/IndustrialArduino/OTA-on-ESP/release/firmware_v") + new_version + ".bin";
     Serial.println("Firmware URL: " + firmware_url);
     return true;
 
@@ -205,9 +222,6 @@ void performOTA(const char* firmware_url) {
         SerialMon.println("OTA done!");
         if (Update.isFinished()) {
           SerialMon.println("Update successfully completed. Rebooting.");
-          current_version = new_version;
-          EEPROM.put(CURRENT_VERSION_ADDR, current_version);
-          EEPROM.commit();
           delay(300);
           ESP.restart();
         } else {
