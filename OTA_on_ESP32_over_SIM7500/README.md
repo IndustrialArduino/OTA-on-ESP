@@ -31,6 +31,8 @@ The firmware update process works as follows:
 - **SIM7500 Module**: Responsible for connecting to the internet via GPRS and making HTTPS requests.
 - **TinyGSM and SSLClient Libraries**: Used for secure communication with the GitHub repository.
 - **ArduinoHttpClient Library**: Handles the GET request to fetch the firmware version and download the binary file.
+- **Root CA Certificate:** As GitHub uses HTTPS, the CA root certificate for `raw.githubusercontent.com` must be uploaded to the SIM module to ensure secure communication. This is required since the OTA process downloads the firmware from a secure GitHub URL. The 
+  `cert.h` file in this repository contains the CA root certificate.
 
 ## Code Overview
 
@@ -70,6 +72,20 @@ String current_version = "1.0.0";  // Update this when you deploy new firmware t
 
 ```
 After a successful OTA update, this variable must be updated in the code to reflect the new firmware version, so that future updates will work correctly.
+
+### 3. Uploading the CA Root Certificate
+
+Since GitHub uses HTTPS to serve files, the CA root certificate for `raw.githubusercontent.com` needs to be uploaded to the SIM7500 module. This certificate ensures that the module can securely download the firmware from GitHub.
+
+The CA certificate is provided in the `cert.h` file in this repository. Make sure to upload this certificate to your SIM module using the appropriate AT command.
+
+Example command to upload the CA certificate:
+
+```bash
+AT+CSSLCFG="cacert",0,"path_to_your_cert_file"
+
+```
+Replace `path_to_your_cert_file` with the correct path to the certificate file on your system.
 
 ## Running the OTA Update
 
