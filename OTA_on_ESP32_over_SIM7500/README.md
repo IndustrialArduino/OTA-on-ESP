@@ -82,10 +82,10 @@ The CA certificate is provided in the `cert.h` file in this repository. Make sur
 Example command to upload the CA certificate:
 
 ```bash
-AT+CSSLCFG="cacert",0,"path_to_your_cert_file"
+secure_layer.setCACert(root_ca);
 
 ```
-Replace `path_to_your_cert_file` with the correct path to the certificate file on your system.
+Replace `root_ca` with the correct path to the certificate file on your system.
 
 ## Running the OTA Update
 
