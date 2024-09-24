@@ -11,7 +11,7 @@
 
 // GitHub version and firmware URLs
 String firmware_url;
-const char* version_url = "https://raw.githubusercontent.com/Pasan1021/ESP32-OTA/release/version.txt";
+const char* version_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/version.txt";
 String current_version = "1.0.0"; // Current firmware version
 String new_version;
 
