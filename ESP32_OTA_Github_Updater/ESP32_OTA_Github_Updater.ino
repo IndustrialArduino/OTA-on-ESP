@@ -156,7 +156,7 @@ bool checkForUpdate(String &firmware_url) {
 
     if (new_version != current_version) {
       Serial.println("New version available. Updating...");
-      firmware_url = String("https://raw.githubusercontent.com/Pasan1021/ESP32-OTA/release/")+ String("firmware_v")+ new_version + String(".bin");
+      firmware_url = String("https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/firmware_v")+ new_version + String(".bin");
       Serial.println("Firmware URL: " + firmware_url);
       return true;
     } else {
