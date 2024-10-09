@@ -6,8 +6,6 @@
 #include <WiFiClientSecure.h>
 #include "Secrets.h"
 
-#define CURRENT_VERSION_ADDR 2
-
 // GitHub version and firmware URLs
 String firmware_url;
 const char* version_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/version.txt";
