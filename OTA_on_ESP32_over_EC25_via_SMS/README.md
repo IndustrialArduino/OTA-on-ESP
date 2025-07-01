@@ -94,22 +94,18 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 
 ```
 
-🔄 Running the OTA Update
+## 🔄 Running the OTA Update
+
 The ESP32 listens for incoming SMS messages.
 
-When it receives update, it:
+When it receives `update`, it:
 
-Connects to the internet
-
-Configures SSL
-
-Downloads the firmware to RAM:firmware.bin
-
-Streams it chunk-by-chunk to ESP32 flash
-
-Closes the file and restarts
-
-Sends an SMS: Firmware Updated Successfully
+- Connects to the internet  
+- Configures SSL  
+- Downloads the firmware to `RAM:firmware.bin`  
+- Streams it chunk-by-chunk to ESP32 flash  
+- Closes the file and restarts  
+- Sends an SMS: **Firmware Updated Successfully**
 
 ## Example Output
 
