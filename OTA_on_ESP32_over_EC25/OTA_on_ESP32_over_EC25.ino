@@ -60,6 +60,21 @@ void loop() {
   }
   delay(1000);
 
+  //add the code need to run and this is an example program
+  //loop to blink without delay
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+    // if the LED is off turn it on and vice-versa:
+    ledState = not(ledState);
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(led1,  ledState);
+    digitalWrite(led2,  ledState);
+  }
+
 }
 
 void Init(void) {                        // Connecting with the network and GPRS
