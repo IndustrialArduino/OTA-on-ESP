@@ -6,8 +6,6 @@
 #include <WiFiClientSecure.h>
 #include "Secrets.h"
 
-#define CURRENT_VERSION_ADDR 2
-
 // GitHub version and firmware URLs
 String firmware_url;
 const char* version_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/version.txt";
@@ -158,7 +156,7 @@ bool checkForUpdate(String &firmware_url) {
 
     if (new_version != current_version) {
       Serial.println("New version available. Updating...");
-      firmware_url = String("https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/firmware_v")+ String("firmware_v")+ new_version + String(".bin");
+      firmware_url = String("https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/firmware_v")+ new_version + String(".bin");
       Serial.println("Firmware URL: " + firmware_url);
       return true;
     } else {
