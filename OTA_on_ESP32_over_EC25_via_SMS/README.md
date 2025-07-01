@@ -102,11 +102,11 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 
 ###  2.When it receives update, it:
 
-      - Connects to the internet
-      - Configures SSL
-      - Downloads the firmware to RAM:firmware.bin
-      - Streams it chunk-by-chunk to ESP32 flash
-      - Closes the file and restarts
+    - Connects to the internet.
+    - Configures SSL.
+    - Downloads the firmware to RAM:firmware.bin.
+    - Streams it chunk-by-chunk to ESP32 flash.
+    - Closes the file and restarts.
      
 ###  3.Sends an SMS: Firmware Updated Successfully
 
