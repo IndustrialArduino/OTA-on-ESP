@@ -53,20 +53,17 @@ String firmware_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-o
 ```
 Make sure the URL points to your GitHub repository and the correct branch.
 
-## Uploading New Firmware
+🚀 Uploading New Firmware
+1. Build your firmware
+Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
 
-### 1.Build your firmware
+2. Upload to GitHub
+Push the new firmware.bin to the release branch of your GitHub repository.
 
-     - Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
+3. Trigger OTA by SMS
+Send an SMS with the word update to the ESP32's SIM number.
 
-### 2.Upload to GitHub
-
-    - Push the new firmware.bin to the release branch of your GitHub repository.
-
-### 3.Trigger OTA by SMS
-
-    - Send an SMS with the word update to the ESP32 SIM number.
-    - The device will initiate the OTA update automatically.
+The device will automatically initiate the OTA update.
 
 ## Root CA Certificate Upload
 
@@ -97,18 +94,22 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 
 ```
 
-## Running the OTA Update
-###  1.The ESP32 listens for incoming SMS messages.
+🔄 Running the OTA Update
+The ESP32 listens for incoming SMS messages.
 
-###  2.When it receives update, it:
+When it receives update, it:
 
-    - Connects to the internet.
-    - Configures SSL.
-    - Downloads the firmware to RAM:firmware.bin.
-    - Streams it chunk-by-chunk to ESP32 flash.
-    - Closes the file and restarts.
-     
-###  3.Sends an SMS: Firmware Updated Successfully
+Connects to the internet
+
+Configures SSL
+
+Downloads the firmware to RAM:firmware.bin
+
+Streams it chunk-by-chunk to ESP32 flash
+
+Closes the file and restarts
+
+Sends an SMS: Firmware Updated Successfully
 
 ## Example Output
 
