@@ -151,6 +151,4 @@ AT+QFCLOSE=<handle>
 
 ---
 
-For questions or improvements, feel free to open an issue or contribute to the repository.
 
-Happy updating! 🚀
