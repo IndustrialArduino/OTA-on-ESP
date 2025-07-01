@@ -32,9 +32,9 @@ The firmware update process works as follows:
 
 ---
 
-### Code Overview
+## Code Overview
 
-## 1. Setup Your APN and Phone Number
+### 1. Setup Your APN and Phone Number
 
 In `Configurations.h`:
 
@@ -44,7 +44,7 @@ const char* phoneNumber = "+94761111111";      // Your number to receive confirm
 
 ```
 
-## 2. Set Firmware URL
+### 2. Set Firmware URL
 In your main code:
 
 ```bash
@@ -53,19 +53,19 @@ String firmware_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-o
 ```
 Make sure the URL points to your GitHub repository and the correct branch.
 
-### Uploading New Firmware
+## Uploading New Firmware
 
-## 1.Build your firmware
+### 1.Build your firmware
      - Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
 
-## 2.Upload to GitHub
+### 2.Upload to GitHub
     - Push the new firmware.bin to the release branch of your GitHub repository.
 
-## 3.Trigger OTA by SMS
+### 3.Trigger OTA by SMS
     - Send an SMS with the word update to the ESP32 SIM number.
     - The device will initiate the OTA update automatically.
 
-### Root CA Certificate Upload
+## Root CA Certificate Upload
 - The EC25 must verify GitHub’s HTTPS certificate using the GitHub CA root certificate.
 - The certificate is included in github.h:
 
@@ -93,19 +93,19 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 
 ```
 
-### Running the OTA Update
-##  1.The ESP32 listens for incoming SMS messages.
+## Running the OTA Update
+###  1.The ESP32 listens for incoming SMS messages.
 
-##  2.When it receives update, it:
+###  2.When it receives update, it:
       - Connects to the internet
       - Configures SSL
       - Downloads the firmware to RAM:firmware.bin
       - Streams it chunk-by-chunk to ESP32 flash
       - Closes the file and restarts
      
-##  3.Sends an SMS: Firmware Updated Successfully
+###  3.Sends an SMS: Firmware Updated Successfully
 
-### Example Output
+## Example Output
 Here's what you should see in the Serial Monitor during the OTA process:
 
 ```bash
