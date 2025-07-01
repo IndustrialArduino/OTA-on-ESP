@@ -40,4 +40,77 @@ In `Configurations.h`:
 
 ```cpp
 const char apn[] = "dialogbb";                 // Your GPRS APN
-const char* phoneNumber = "+94769164662";      // Your number to receive confirmation SMS
+const char* phoneNumber = "+94761111111";      // Your number to receive confirmation SMS
+
+2. Set Firmware URL
+In your main code:
+
+String firmware_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/firmware.bin";
+Make sure the URL points to your GitHub repository and the correct branch.
+
+Uploading New Firmware
+Build your firmware
+Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
+
+Upload to GitHub
+
+Push the new firmware.bin to the release branch of your GitHub repository.
+
+Trigger OTA by SMS
+
+Send an SMS with the word update to the ESP32 SIM number.
+
+The device will initiate the OTA update automatically.
+
+Root CA Certificate Upload
+The EC25 must verify GitHub’s HTTPS certificate using the GitHub CA root certificate.
+
+The certificate is included in github.h:
+
+const String root_ca = R"EOF(
+-----BEGIN CERTIFICATE-----
+... GitHub Root CA ...
+-----END CERTIFICATE-----
+)EOF";
+In code, the certificate is uploaded using:
+
+AT+QFUPL="RAM:github_ca.pem",<length>,100
+<root_ca contents>
+This certificate is then registered using:
+
+AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
+Running the OTA Update
+The ESP32 listens for incoming SMS messages.
+
+When it receives update, it:
+
+Connects to the internet
+
+Configures SSL
+
+Downloads the firmware to RAM:firmware.bin
+
+Streams it chunk-by-chunk to ESP32 flash
+
+Closes the file and restarts
+
+Sends an SMS: Firmware Updated Successfully
+
+Example Output
+Here's what you should see in the Serial Monitor during the OTA process:
+
+[SMS] Received: update
+[SMS Action] OTA UPDATE
+[OTA] Waiting for +QHTTPGET response...
+[OTA] Content-Length: 112345
+[OTA] HTTPS GET sent
+[OTA] File size: 113123
+[OTA] Header size: 778
+[OTA] Start writing...
+[OTA] Progress: 112345 / 112345 bytes
+[OTA] Firmware write complete.
+[OTA] Update successful!
+[SMS] Firmware Updated Successfully
+[OTA] Rebooting...
+
+
