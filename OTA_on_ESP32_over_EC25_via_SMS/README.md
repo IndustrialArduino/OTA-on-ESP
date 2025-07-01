@@ -38,14 +38,19 @@ The firmware update process works as follows:
 
 In `Configurations.h`:
 
-```cpp
+```bash
 const char apn[] = "dialogbb";                 // Your GPRS APN
 const char* phoneNumber = "+94761111111";      // Your number to receive confirmation SMS
+
+```
 
 2. Set Firmware URL
 In your main code:
 
+```bash
 String firmware_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-on-ESP/release/firmware.bin";
+
+```
 Make sure the URL points to your GitHub repository and the correct branch.
 
 Uploading New Firmware
@@ -67,18 +72,31 @@ The EC25 must verify GitHub’s HTTPS certificate using the GitHub CA root certi
 
 The certificate is included in github.h:
 
-const String root_ca = R"EOF(
+```bash
+String root_ca  =\
 -----BEGIN CERTIFICATE-----
 ... GitHub Root CA ...
 -----END CERTIFICATE-----
-)EOF";
+;
+
+```
+
 In code, the certificate is uploaded using:
 
+```bash
 AT+QFUPL="RAM:github_ca.pem",<length>,100
 <root_ca contents>
+
+```
+
 This certificate is then registered using:
 
+
+```bash
 AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
+
+```
+
 Running the OTA Update
 The ESP32 listens for incoming SMS messages.
 
@@ -99,6 +117,9 @@ Sends an SMS: Firmware Updated Successfully
 Example Output
 Here's what you should see in the Serial Monitor during the OTA process:
 
+
+```bash
+
 [SMS] Received: update
 [SMS Action] OTA UPDATE
 [OTA] Waiting for +QHTTPGET response...
@@ -112,5 +133,7 @@ Here's what you should see in the Serial Monitor during the OTA process:
 [OTA] Update successful!
 [SMS] Firmware Updated Successfully
 [OTA] Rebooting...
+
+```
 
 
