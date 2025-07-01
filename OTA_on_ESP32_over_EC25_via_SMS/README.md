@@ -56,16 +56,20 @@ Make sure the URL points to your GitHub repository and the correct branch.
 ## Uploading New Firmware
 
 ### 1.Build your firmware
+
      - Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
 
 ### 2.Upload to GitHub
+
     - Push the new firmware.bin to the release branch of your GitHub repository.
 
 ### 3.Trigger OTA by SMS
+
     - Send an SMS with the word update to the ESP32 SIM number.
     - The device will initiate the OTA update automatically.
 
 ## Root CA Certificate Upload
+
 - The EC25 must verify GitHub’s HTTPS certificate using the GitHub CA root certificate.
 - The certificate is included in github.h:
 
@@ -97,6 +101,7 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 ###  1.The ESP32 listens for incoming SMS messages.
 
 ###  2.When it receives update, it:
+
       - Connects to the internet
       - Configures SSL
       - Downloads the firmware to RAM:firmware.bin
@@ -106,6 +111,7 @@ AT+QSSLCFG="cacert",1,"RAM:github_ca.pem"
 ###  3.Sends an SMS: Firmware Updated Successfully
 
 ## Example Output
+
 Here's what you should see in the Serial Monitor during the OTA process:
 
 ```bash
