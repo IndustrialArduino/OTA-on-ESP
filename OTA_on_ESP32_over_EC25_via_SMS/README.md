@@ -53,15 +53,15 @@ String firmware_url = "https://raw.githubusercontent.com/IndustrialArduino/OTA-o
 ```
 Make sure the URL points to your GitHub repository and the correct branch.
 
-🚀 Uploading New Firmware
-1. Build your firmware
+## 🚀 Uploading New Firmware
+1.  **Build your firmware**
 Compile your code using PlatformIO or Arduino IDE and generate the .bin firmware file.
 
-2. Upload to GitHub
+2.  **Upload to GitHub**
 Push the new firmware.bin to the release branch of your GitHub repository.
 
-3. Trigger OTA by SMS
-Send an SMS with the word update to the ESP32's SIM number.
+3. **Trigger OTA by SMS**
+Send an SMS with the word **update** to the ESP32's SIM number.
 
 The device will automatically initiate the OTA update.
 
